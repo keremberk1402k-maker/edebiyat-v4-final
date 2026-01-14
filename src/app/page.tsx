@@ -377,7 +377,6 @@ export default function Game() {
 
   const buyItem = (id:string) => { const it=itemDB[id]; if(player!.gold>=it.cost){let np={...player!}; np.gold-=it.cost; if(it.type==='joker') np.jokers[it.jokerId!]=(np.jokers[it.jokerId!]||0)+1; else np.inventory.push({...it, uid:Date.now()}); saveGame(np); notify("Satın Alındı!", "success");}else notify("Para Yetersiz!", "error"); };
   
-  // DÜZELTİLMİŞ EQUIP FUNCTION
   const equipItem = (idx:number) => { 
       if(!player) return; 
       const np={...player}; 
@@ -401,7 +400,7 @@ export default function Game() {
   };
   const sellItem = (idx:number) => { if(!player)return; const np={...player}; np.gold+=np.inventory[idx].cost/2; np.inventory.splice(idx,1); saveGame(np); notify("Satıldı", "success"); };
 
-  const prepareArena = () => { if(!player) return; const bots = [{n:'Edebiyat_Pro',s:3000}, {n:'KitapKurdu',s:1500}, {n:player.name, s:player.score}]; bots.sort((a,b)=>b.s - a.s); setArenaBots(bots); }
+  // --- prepareArena (ESKİ BOT FONKSİYONU) SİLİNDİ ---
 
   const isArenaUnlocked = () => {
       const finalRegion = regions.find(r => r.id === 'r4');
@@ -502,7 +501,7 @@ export default function Game() {
                     </div>
                     <div style={{display:'grid', gridTemplateColumns: device==='mobile'?'1fr 1fr':'1fr 1fr', gap:'20px', paddingLeft: device==='mobile'?'0':'40px', alignContent:'center'}}>
                         {[{id:'map',t:'MACERA',i:'🗺️'}, {id:'arena',t:'ARENA',i:'⚔️',check:true}, {id:'shop',t:'MARKET',i:'🛒'}, {id:'inv',t:'ÇANTA',i:'🎒'}, {id:'lib',t:'BİLGİ',i:'📚'}, {id:'mistake',t:'HATA',i:'📜'}].map(m => (
-                            <div key={m.id} onClick={()=>{ if(m.check && !isArenaUnlocked()) return notify("Arena için Son Boss'u (Cehalet Kalesi) yenmelisin!", "error"); if(m.id==='arena') prepareArena(); setScreen(m.id as any); }} style={{background:'#1a1a20', border:'2px solid #333', borderRadius:'20px', height: device==='mobile'?'120px':'180px', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', cursor:'pointer', transition:'0.2s', color:'white', opacity: (m.check && !isArenaUnlocked()) ? 0.3 : 1}}>
+                            <div key={m.id} onClick={()=>{ if(m.check && !isArenaUnlocked()) return notify("Arena için Son Boss'u (Cehalet Kalesi) yenmelisin!", "error"); if(m.id==='arena') fetchLeaderboard(); setScreen(m.id as any); }} style={{background:'#1a1a20', border:'2px solid #333', borderRadius:'20px', height: device==='mobile'?'120px':'180px', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', cursor:'pointer', transition:'0.2s', color:'white', opacity: (m.check && !isArenaUnlocked()) ? 0.3 : 1}}>
                                 <div style={{fontSize: device==='mobile'?'40px':'70px'}}>{(m.check && !isArenaUnlocked()) ? '🔒' : m.i}</div>
                                 <div style={{fontSize: device==='mobile'?'16px':'24px', fontWeight:'bold', marginTop:'10px'}}>{m.t}</div>
                             </div>
