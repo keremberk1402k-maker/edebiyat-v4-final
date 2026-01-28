@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/edebiyat-v4-final',
+  basePath: '/edebiyat-v4-final', // Resimdeki doğru depo adın bu
   images: {
     unoptimized: true,
   },
-  // Hataları susturan ayarlar
   typescript: {
     ignoreBuildErrors: true,
   },
