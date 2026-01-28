@@ -1,13 +1,13 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: 'export',
-  basePath: '/edebiyat-v4-final', // <--- Resimdeki depo adın bu, DOĞRUSU BU!
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  output: "export",
+  basePath: "/edebiyat-v4-final",
   images: {
     unoptimized: true,
   },
-  // --- HATA ENGELLEYİCİ KODLAR ---
   typescript: {
-    ignoreBuildErrors: true, // Yazım hatalarını görmezden gel
+    ignoreBuildErrors: true, // Hataları görmezden gel
   },
   eslint: {
     ignoreDuringBuilds: true, // Kuralları görmezden gel
