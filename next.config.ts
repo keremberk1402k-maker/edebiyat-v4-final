@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',  // <--- BU SATIR SİTEYİ STATİK YAPAR (404'ü ÇÖZER)
-  basePath: '/edebiyat-v4-final', // <--- DEPO ADIN BURAYA GELMELİ
+  output: 'export',
+  basePath: '/edebiyat_efsaneleri', // <--- BURASI SENİN DEPO ADIN OLMALI (Çok Önemli!)
   images: {
-    unoptimized: true, // <--- RESİMLERİN GÖRÜNMESİ İÇİN ŞART
+    unoptimized: true,
   },
 };
 
