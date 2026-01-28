@@ -1,16 +1,16 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  output: "export",
-  basePath: "/edebiyat-v4-final",
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  basePath: '/edebiyat-v4-final',
   images: {
     unoptimized: true,
   },
+  // Hataları susturan ayarlar
   typescript: {
-    ignoreBuildErrors: true, // Hataları görmezden gel
+    ignoreBuildErrors: true,
   },
   eslint: {
-    ignoreDuringBuilds: true, // Kuralları görmezden gel
+    ignoreDuringBuilds: true,
   },
 };
 
